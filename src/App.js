@@ -8,8 +8,9 @@ import ShopPage from "./pages/shop/ShopPage";
 import SigninAndSignupPage from "./pages/signin-and-signup/signin-and-signup";
 import Header from "./components/Header/Header";
 
-// import { getAuth, signInWithPopup, GoogleAuthProvider } from "./firebase/firebase.utils";
-import { auth } from "./firebase/firebase.utils";
+import { onAuthStateChanged } from "firebase/auth";
+import { onSnapshot } from "@firebase/firestore";
+import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
 class App extends Component {
   constructor() {
     super();
@@ -23,10 +24,29 @@ class App extends Component {
   unsubscribeFromAuth = null;
 
   componentDidMount() {
-    this.unsubscribeFromAuth = auth.onAuthStateChanged((user) => {
-      this.setState({ currentUser: user });
+    this.unsubscribeFromAuth = onAuthStateChanged(auth, async (userAuth) => {
+      if (userAuth) {
+        const userRef = await createUserProfileDocument(userAuth);
+        // console.log(userRef, "userRef");
+        onSnapshot(userRef, (snapShot) => {
+          // console.log("current Data: ", snapShot.data());
+          // console.log("current Data: ", snapShot);
+          this.setState({
+            currentUser: { id: snapShot.id, ...snapShot.data() },
+          });
+        });
 
-      console.log(user);
+        console.log(this.state);
+        // userRef.onSnapshot((snapShot) => {
+        //   console.log(snapShot);
+        // });
+      } else {
+        this.setState({ currentUser: userAuth });
+      }
+
+      // console.log(auth);
+
+      // console.log(user);
     });
   }
 
