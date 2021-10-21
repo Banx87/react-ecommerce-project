@@ -37,7 +37,7 @@ export default class SignUp extends Component {
         password
       );
 
-      await createUserProfileDocument(user, { displayName }); //This doesn't seem to work
+      await createUserProfileDocument(user, { displayName });
 
       this.setState({
         displayName: "",
