@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
 import CartIcon from "../CartIcon/CartIcon";
-import { CartDropdown } from "../CartDropdown/CartDropdown";
+import CartDropdown from "../CartDropdown/CartDropdown";
 
 import { auth } from "../../firebase/firebase.utils";
 
