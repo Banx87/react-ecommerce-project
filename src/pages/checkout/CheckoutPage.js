@@ -23,7 +23,7 @@ const CheckoutPage = ({ cartItems, total }) => (
   <div className="checkout-page">
     <div className="checkout-header">
       {tableHeaderNames.map((headerName) => (
-        <div className="header-block">
+        <div key={headerName} className="header-block">
           <span>{headerName}</span>
         </div>
       ))}
@@ -32,7 +32,7 @@ const CheckoutPage = ({ cartItems, total }) => (
       <CheckoutItem key={cartItem.id} cartItem={cartItem} />
     ))}
     <div className="total">
-      <span>TOTAL: ${total}</span>
+      <span>TOTAL: {total.toFixed(2) + " €"}</span>
     </div>
   </div>
 );
