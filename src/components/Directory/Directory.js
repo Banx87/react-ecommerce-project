@@ -6,11 +6,13 @@ import { selectDirectorySections } from "../../redux/directory/directory.selecto
 
 import MenuItem from "../MenuItem/MenuItem";
 
-import "./Directory.scss";
+// import "./Directory.scss";
+
+import { DirectoryMenuContainer } from "./Directory.styles";
 
 const Directory = ({ sections }) => {
   return (
-    <div className="directory-menu">
+    <DirectoryMenuContainer>
       {sections.map(({ title, imageUrl, id, size, linkUrl }) => (
         <MenuItem
           key={id}
@@ -21,7 +23,7 @@ const Directory = ({ sections }) => {
         />
       ))}
       {/* Could also use for example ...otherSectionProps  to not have to write all those double props*/}
-    </div>
+    </DirectoryMenuContainer>
   );
 };
 
