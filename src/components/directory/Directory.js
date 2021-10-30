@@ -8,7 +8,6 @@ import MenuItem from "../MenuItem/MenuItem";
 
 import "./Directory.scss";
 
-console.log("test Log");
 const Directory = ({ sections }) => {
   return (
     <div className="directory-menu">
