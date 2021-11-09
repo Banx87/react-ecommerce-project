@@ -37,11 +37,13 @@ const firebaseApp = initializeApp({
 export const db = getFirestore(firebaseApp);
 export const auth = getAuth(firebaseApp);
 
-const provider = new GoogleAuthProvider();
-provider.setCustomParameters({ params: "select_account" });
+export const googleProvider = new GoogleAuthProvider();
+googleProvider.setCustomParameters({
+  params: "select_account",
+});
 
 export const signInWithGoogle = () => {
-  signInWithPopup(auth, provider).then((result) => {
+  signInWithPopup(auth, googleProvider).then((result) => {
     // const credential = GoogleAuthProvider.credentialFromResult(result);
     // const token = credential.accessToken;
     // const user = result.user;
@@ -112,4 +114,13 @@ export const convertCollectionsSnapshotToMap = (collections) => {
     acc[collection.title.toLowerCase()] = collection;
     return acc;
   }, {});
+};
+
+export const getCurrentUser = () => {
+  return new Promise((resolve, reject) => {
+    const unsubscribe = auth.onAuthStateChanged((userAuth) => {
+      unsubscribe();
+      resolve(userAuth);
+    }, reject);
+  });
 };

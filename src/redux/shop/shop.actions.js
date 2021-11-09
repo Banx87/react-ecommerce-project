@@ -8,6 +8,7 @@ import {
 
 export const fetchCollectionsStart = (collectionsMap) => ({
   type: ShopActionTypes.FETCH_COLLECTIONS_START,
+  payload: collectionsMap,
 });
 
 export const fetchCollectionsSuccess = (collectionsMap) => ({
