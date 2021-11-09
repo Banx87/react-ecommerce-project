@@ -16,10 +16,6 @@ import { selectCurrentUser } from "./redux/user/user.selectors";
 import { setCurrentUser, checkUserSession } from "./redux/user/user.actions";
 // import { selectCollectionsForPreview } from "./redux/shop/shop.selectors";
 
-import { onAuthStateChanged } from "firebase/auth";
-import { onSnapshot } from "@firebase/firestore";
-import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
-
 const App = ({ setCurrentUser, currentUser, checkUserSession }) => {
   useEffect(() => {
     checkUserSession();

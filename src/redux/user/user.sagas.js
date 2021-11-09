@@ -8,9 +8,7 @@ import {
 } from "../../firebase/firebase.utils";
 
 import {
-  GoogleAuthProvider,
   signInWithPopup,
-  getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
 } from "firebase/auth";
